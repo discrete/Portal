@@ -35,7 +35,7 @@ public class OnlineApplication {
 	
 	public static Entity getOnlineApplication(String appId)
 	{
-		Key idKey = KeyFactory.createKey("OnlineApplication",appId);
+		Key idKey = KeyFactory.createKey("OnlineApplication", appId);
 	  	try {	  
 	  		return datastore.get(idKey);
 	    }

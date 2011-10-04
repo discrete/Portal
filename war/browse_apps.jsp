@@ -33,7 +33,7 @@
         for (Entity app : onlineApps) {
         	%>
         	id: <%= app.getKey().getId() %><br/>
-        	name: <%= app.getProperty("name") %><br/>
+        	name: <a href="lookinto_app.jsp?appId=<%=app.getKey().getId()%>"><%= app.getProperty("name") %></a><br/>
         	description: <%=app.getProperty("description") %><br/>
             <%
         }
