@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>Asgameapi</servlet-name>
+		<servlet-class>com.accesscompany.as.asgameapi.AsgameapiServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Asgameapi</servlet-name>
+		<url-pattern>/asgameapi</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SignupPlayer</servlet-name>
+		<servlet-class>com.accesscompany.as.asgameapi.SignupSocialPlayerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SignupPlayer</servlet-name>
+		<url-pattern>/signup</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AuthenticatePlayer</servlet-name>
+		<servlet-class>com.accesscompany.as.asgameapi.AuthenticatePlayerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuthenticatePlayer</servlet-name>
+		<url-pattern>/authenticate</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RegisterApplication</servlet-name>
+		<servlet-class>com.accesscompany.as.asgameapi.RegisterApplicationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterApplication</servlet-name>
+		<url-pattern>/registerapp</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>
