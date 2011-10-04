@@ -1,6 +1,8 @@
 package com.accesscompany.as.asgameapi;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,15 +24,25 @@ public class AuthenticatePlayerServlet extends HttpServlet {
 		String password = req.getParameter("password");
 		Entity socialPlayer = SocialPlayer.getSocialPlayer(playerId);
 		if (socialPlayer == null) {
-			resp.getWriter().println("We could not found you");
+			resp.getWriter().println("1");
 		}
 		else {
-			String savedPassword = (String)socialPlayer.getProperty("Password");
+			String savedPassword = (String)socialPlayer.getProperty("password");
 			if (savedPassword.equals(password)) {
-				resp.getWriter().println("Welcome " + (String)socialPlayer.getProperty("FirstName"));
+				IdGenerator idGen = new IdGenerator();
+				String sessionId = idGen.generateId(40);
+				socialPlayer = SocialPlayer.createOrUpdateSocialPlayer(playerId, savedPassword, (String)socialPlayer.getProperty("email"), (String)socialPlayer.getProperty("firstName"), (String)socialPlayer.getProperty("lastName"), (String)socialPlayer.getProperty("nickname"), sessionId);
+				/*resp.getWriter().println("Welcome " + (String)socialPlayer.getProperty("firstName"));
+				resp.getWriter().println("sessionId:" + sessionId);
+				resp.getWriter().println("name:" + socialPlayer.getProperty("firstName").toString());
+				resp.getWriter().println("nickname:" + socialPlayer.getProperty("nickname").toString());*/
+				resp.getWriter().println("0");
+				Set<Entity> result = new HashSet<Entity>();
+				result.add(socialPlayer);
+				resp.getWriter().println(SimpleJSON.writeJSON(result));
 			}
 			else {
-				resp.getWriter().println("Wrong password");
+				resp.getWriter().println("2");
 			}
 		}
 	}

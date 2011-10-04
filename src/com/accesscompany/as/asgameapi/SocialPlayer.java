@@ -14,7 +14,7 @@ public class SocialPlayer {
 	private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	
 	public static Entity createOrUpdateSocialPlayer(String playerId, String password,
-			String email, String firstName, String lastName) {
+			String email, String firstName, String lastName, String nickname, String sessionId) {
 		Entity socialPlayer = getSocialPlayer(playerId);
 		if (socialPlayer == null) {
 			socialPlayer = new Entity("SocialPlayer", playerId);
@@ -24,6 +24,8 @@ public class SocialPlayer {
 		socialPlayer.setProperty("email", email);
 		socialPlayer.setProperty("firstName", firstName);
 		socialPlayer.setProperty("lastName", lastName);
+		socialPlayer.setProperty("nickname", nickname);
+		socialPlayer.setProperty("sessionId", sessionId);
 		
 		datastore.put(socialPlayer);
 		

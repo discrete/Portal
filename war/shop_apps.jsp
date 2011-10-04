@@ -24,7 +24,7 @@
     List<Entity> onlineApps = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(5));
     if (onlineApps.isEmpty()) {
         %>
-        <p>No registerd application yet</p>
+        <p>No registered application yet</p>
         <%
     } else {
         %>
@@ -32,9 +32,9 @@
         <%
         for (Entity app : onlineApps) {
         	%>
-        	id: <%= app.getKey().getId() %></br>
-        	name: <%= app.getProperty("name") %></br>
-        	description: <%=app.getProperty("description") %></br>
+        	id: <%= app.getKey().getId() %><br/>
+        	name: <%= app.getProperty("name") %><br/>
+        	description: <%=app.getProperty("description") %><br/>
             <%
         }
     }

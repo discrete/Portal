@@ -23,12 +23,14 @@ public class SignupSocialPlayerServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String firstName = req.getParameter("firstName");
 		String lastName = req.getParameter("lastName");
+		String nickname = req.getParameter("nickname");
 		
 		try {
-			SocialPlayer.createOrUpdateSocialPlayer(playerId, password, email, firstName, lastName);
+			SocialPlayer.createOrUpdateSocialPlayer(playerId, password, email, firstName, lastName, nickname, "0");
 		}
 		catch (Exception e){
 			return;
 		}
+		resp.getWriter().println("Welcome " + nickname);
 	}
 }
