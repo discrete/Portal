@@ -19,8 +19,9 @@ public class RegisterApplicationServlet extends HttpServlet {
 		//super.doGet(req, resp);
 		resp.setContentType("text/plain");
 		String name = req.getParameter("name");
+		long price = Long.parseLong(req.getParameter("price"));
 		String description = req.getParameter("description");
-		Entity onlineApp = OnlineApplication.registerOnlineApplication(name, description);
+		Entity onlineApp = OnlineApplication.registerOnlineApplication(name, price, description);
 		if (onlineApp == null) {
 			resp.getWriter().println("ERROR: we could not register your application");
 		}

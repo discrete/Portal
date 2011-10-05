@@ -36,6 +36,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>RegisterApplication</servlet-name>
 		<url-pattern>/registerapp</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>BuyApplication</servlet-name>
+		<servlet-class>com.accesscompany.as.asgameapi.BuyApplicationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BuyApplication</servlet-name>
+		<url-pattern>/buyapp</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

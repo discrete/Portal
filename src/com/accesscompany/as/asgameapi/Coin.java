@@ -12,13 +12,14 @@ import com.google.appengine.api.datastore.KeyFactory;
 public class Coin {
 	private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	
-	public static Entity transaction(String playerId, String appId, int amount, String note)
+	public static Entity transaction(String playerId, String appId, long price, String note)
 	{
 		Entity player = SocialPlayer.getSocialPlayer(playerId);
 		Entity app = OnlineApplication.getOnlineApplication(appId);
-		Entity lineTransaction = new Entity("Coin", player.getKey());
-		lineTransaction.setProperty("by", app.getKey());
-		lineTransaction.setProperty("amount", amount);
+		Entity lineTransaction = new Entity("Coin");
+		lineTransaction.setProperty("playerKey", player.getKey());
+		lineTransaction.setProperty("appKey", app.getKey());
+		lineTransaction.setProperty("amount", price);
 		Date depositDate = new Date();
 		lineTransaction.setProperty("depositDate", depositDate);
 		lineTransaction.setProperty("note", note);
@@ -27,14 +28,14 @@ public class Coin {
 		return lineTransaction;
 	}
 	
-	public static Entity deposit(String playerId, String appId, int amount, String note)
+	public static Entity deposit(String playerId, String appId, long amount, String note)
 	{
 		return transaction(playerId, appId, amount, note);
 	}
 	
-	public static Entity withdraw(String playerId, String appId, int amount, String note)
+	public static Entity withdraw(String playerId, String appId, long price, String note)
 	{
-		amount = amount * -1;
-		return transaction(playerId, appId, amount, note);
+		price = price * -1;
+		return transaction(playerId, appId, price, note);
 	}
 }
