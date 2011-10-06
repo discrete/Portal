@@ -12,7 +12,7 @@ public class SimpleJSON {
 	 * @param entities
 	 *          entities to return as JSON strings
 	 */
-  public static String writeJSON(Iterable<Entity> entities) {
+  public static String writeJSON(Iterable<Entity> entities, String resultcode) {
     StringBuilder sb = new StringBuilder();
     int i = 0;
     sb.append("[");
@@ -27,7 +27,8 @@ public class SimpleJSON {
       for (String key : properties.keySet()) {
         sb.append("\"" + key + "\" : \"" + properties.get(key) + "\",");
       }
-      sb.deleteCharAt(sb.lastIndexOf(","));
+      sb.append(" \"resultcode\" : \"" + resultcode + "\"");
+      //sb.deleteCharAt(sb.lastIndexOf(","));
       sb.append("},");
       i++;
     }
