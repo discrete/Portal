@@ -30,7 +30,7 @@ else {
 	 id: <%=appId %><br/>
 	 name: <%=onlineApp.getProperty("name") %><br>
 	 description: <%=onlineApp.getProperty("description") %><br>
-	 <a href="buyapp?appId=<%=appId %>">Buy</a>
+	 <a href="buyapp?playerId=jhkimsharp@gmail.com&appId=<%=appId %>">Buy</a>
 	 <%
 }
 

@@ -10,16 +10,17 @@ import com.google.appengine.api.datastore.KeyFactory;
 public class OnlineApplication {
 	private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	
-	public static Entity registerOnlineApplication(String name, String description)
+	public static Entity registerOnlineApplication(String name, long price, String description)
 	{
 		Entity onlineApp = new Entity("OnlineApplication");
 		onlineApp.setProperty("name", name);
+		onlineApp.setProperty("price", price);
 		onlineApp.setProperty("description", description);
 		
 		datastore.put(onlineApp);
 		return onlineApp;
 	}
-	public static Entity createOrUpdateOnlineApplication(String appId, String name, String description)
+	public static Entity createOrUpdateOnlineApplication(String appId, String name, long price, String description)
 	{
 		//TODO add icon to a field
 		Entity onlineApp = getOnlineApplication(appId);
@@ -27,6 +28,7 @@ public class OnlineApplication {
 			onlineApp = new Entity("OnlineApplication", appId);
 		}
 		onlineApp.setProperty("name", name);
+		onlineApp.setProperty("price", price);
 		onlineApp.setProperty("description", description);
 		datastore.put(onlineApp);
 		
