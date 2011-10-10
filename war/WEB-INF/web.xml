@@ -44,6 +44,22 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>BuyApplication</servlet-name>
 		<url-pattern>/buyapp</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>TransactionApplication</servlet-name>
+		<servlet-class>com.accesscompany.as.asgameapi.BankTrasactionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TransactionApplication</servlet-name>
+		<url-pattern>/transaction</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>BalanceApplication</servlet-name>
+		<servlet-class>com.accesscompany.as.asgameapi.BankBalanceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BalanceApplication</servlet-name>
+		<url-pattern>/balance</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

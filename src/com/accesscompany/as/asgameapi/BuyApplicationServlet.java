@@ -7,40 +7,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 
 @SuppressWarnings("serial")
 public class BuyApplicationServlet extends HttpServlet {
-	private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		super.doGet(req, resp);
-		String appId = req.getParameter("appId");
+			throws ServletException, IOException
+	{
+		int errorCode = 0;
+		/* super.doGet(req, resp); */
+		resp.setContentType("text/plain");
 		String playerId = req.getParameter("playerId");
-		Entity player = SocialPlayer.getSocialPlayer(playerId);
-		Entity app = OnlineApplication.getOnlineApplication(appId);
+		String appId = req.getParameter("appId");
+		String sessionId = req.getParameter("sessionId");
 		
-		Query q = new Query("Coin");
-		q.addFilter("playerKey", Query.FilterOperator.EQUAL, player.getKey());
+		Entity socialPlayer = SocialPlayer.getSocialPlayer(playerId);
+		Entity onlineApp = OnlineApplication.getOnlineApplication(appId);
 		
-		PreparedQuery pq = datastore.prepare(q);
-		
-		long balance = 0;
-		for (Entity lineTransaction : pq.asIterable()) {
-			balance = balance + Long.parseLong(lineTransaction.getProperty("amount").toString());
+		//Get the balance of the socialPlayer
+		long balance = Coin.balance(playerId);
+		long price = Long.parseLong(onlineApp.getProperty("price").toString());
+		if (balance >= price) {
+			Entity receipt = Coin.withdraw(playerId, "1", price, "Buying an application from AS" + appId);
+			Inventory.createPurchase(playerId, onlineApp.getKey(), receipt.getKey());
+			resp.getWriter().println("Purchase made");
+		}
+		else {
+			errorCode = 1;
+			resp.getWriter().println("Not enough funds");
 		}
 		
-		long price = Long.parseLong(app.getProperty("price").toString());
-		if (balance < price) {
-			resp.getWriter().println("Not enough fund");
-		}
-		Coin.withdraw(playerId, appId, price, "bought " + app.getProperty("name"));
 	}
 
 }

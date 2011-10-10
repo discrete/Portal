@@ -28,6 +28,7 @@ public class OnlineApplication {
 			onlineApp = new Entity("OnlineApplication", appId);
 		}
 		onlineApp.setProperty("name", name);
+		onlineApp.setProperty("price", price);
 		onlineApp.setProperty("description", description);
 		datastore.put(onlineApp);
 		
