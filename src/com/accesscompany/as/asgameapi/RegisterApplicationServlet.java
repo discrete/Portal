@@ -16,11 +16,12 @@ public class RegisterApplicationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//super.doGet(req, resp);
+		/* super.doGet(req, resp); */
 		resp.setContentType("text/plain");
 		String name = req.getParameter("name");
+		String price = req.getParameter("price");
 		String description = req.getParameter("description");
-		Entity onlineApp = OnlineApplication.registerOnlineApplication(name, description);
+		Entity onlineApp = OnlineApplication.registerOnlineApplication(name, Long.parseLong(price), description);
 		if (onlineApp == null) {
 			resp.getWriter().println("ERROR: we could not register your application");
 		}
