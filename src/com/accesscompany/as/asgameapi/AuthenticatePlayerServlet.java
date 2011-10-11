@@ -24,7 +24,7 @@ public class AuthenticatePlayerServlet extends HttpServlet {
 		String password = req.getParameter("password");
 		Entity socialPlayer = SocialPlayer.getSocialPlayer(playerId);
 		if (socialPlayer == null) {
-			resp.getWriter().println("1");
+			resp.getWriter().println("[{\"resultcode\": \"1\"}]");
 		}
 		else {
 			String savedPassword = (String)socialPlayer.getProperty("password");
@@ -42,7 +42,7 @@ public class AuthenticatePlayerServlet extends HttpServlet {
 				resp.getWriter().println(SimpleJSON.writeJSON(result, "0"));
 			}
 			else {
-				resp.getWriter().println("2");
+				resp.getWriter().println("[{\"resultcode\": \"2\"}]");
 			}
 		}
 	}

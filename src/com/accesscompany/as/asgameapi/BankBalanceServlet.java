@@ -17,7 +17,7 @@ public class BankBalanceServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 		String playerId = req.getParameter("playerId");
 		long balance = Coin.balance(playerId);
-		resp.getWriter().println("Your balance is " + balance);
+		resp.getWriter().println("[{\"balance\": \"" + balance + "\"}]");
 	}
 
 }

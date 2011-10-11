@@ -47,4 +47,14 @@ public class OnlineApplication {
 	    }
 	}
 
+	public static Entity getOnlineApplication(Key appKey)
+	{
+	  	try {	  
+	  		return datastore.get(appKey);
+	    }
+	  	catch (EntityNotFoundException e) {
+	  		return null;
+	    }
+	}
+
 }

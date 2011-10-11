@@ -20,6 +20,7 @@
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     // Run an ancestor query to ensure we see the most up-to-date
     // view of the Greetings belonging to the selected Guestbook.
+    String playerId = request.getParameter("playerId");
     Query query = new Query("OnlineApplication");
     List<Entity> onlineApps = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(5));
     if (onlineApps.isEmpty()) {
@@ -33,7 +34,7 @@
         for (Entity app : onlineApps) {
         	%>
         	id: <%= app.getKey().getId() %><br/>
-        	name: <a href="lookinto_app.jsp?appId=<%=app.getKey().getId()%>"><%= app.getProperty("name") %></a><br/>
+        	name: <a href="lookinto_app.jsp?playerId=<%=playerId %>&appId=<%=app.getKey().getId()%>"><%= app.getProperty("name") %></a><br/>
         	description: <%=app.getProperty("description") %><br/>
             <%
         }

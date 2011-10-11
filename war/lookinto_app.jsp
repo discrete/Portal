@@ -8,6 +8,7 @@
 <%@ page import="com.google.appengine.api.datastore.Key" %>
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 <%@ page import="com.accesscompany.as.asgameapi.OnlineApplication" %>
+<%@ page import="com.accesscompany.as.asgameapi.Inventory" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,6 +18,7 @@
 <body>
 <%
 DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+String playerId = request.getParameter("playerId");
 String appId = request.getParameter("appId");
 
 Entity onlineApp = OnlineApplication.getOnlineApplication(appId);
@@ -30,8 +32,18 @@ else {
 	 id: <%=appId %><br/>
 	 name: <%=onlineApp.getProperty("name") %><br>
 	 description: <%=onlineApp.getProperty("description") %><br>
-	 <a href="buyapp?playerId=jhkimsharp@gmail.com&appId=<%=appId %>">Buy</a>
 	 <%
+	 Entity item = Inventory.getInventoryItem(playerId, onlineApp.getKey());
+	 if (item == null) {
+	 %>
+	 <a href="buyapp?playerId=<%=playerId %>&appId=<%=appId %>">Buy</a>
+	 <%
+	 }
+	 else {
+	 %>
+	 already Installed
+	 <%
+	 }
 }
 
 %>

@@ -44,6 +44,7 @@ public class Coin {
 	{
 		long balance = 0;
 		Query query = new Query("Coin");
+		query.addFilter("playerId", Query.FilterOperator.EQUAL, playerId);
 	    List<Entity> transactions = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
 	    if (transactions.isEmpty()) {
 	    	return 0;

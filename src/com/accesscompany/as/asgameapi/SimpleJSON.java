@@ -20,15 +20,19 @@ public class SimpleJSON {
       Map<String, Object> properties = result.getProperties();
       sb.append("{");
       if (result.getKey().getName() == null)
-        sb.append("\"name\" : \"" + result.getKey().getId() + "\",");
+        sb.append("\"id\" : \"" + result.getKey().getId() + "\",");
       else
         sb.append("\"name\" : \"" + result.getKey().getName() + "\",");
 
       for (String key : properties.keySet()) {
         sb.append("\"" + key + "\" : \"" + properties.get(key) + "\",");
       }
-      sb.append(" \"resultcode\" : \"" + resultcode + "\"");
-      //sb.deleteCharAt(sb.lastIndexOf(","));
+      if (resultcode != null) {
+    	  sb.append(" \"resultcode\" : \"" + resultcode + "\"");
+      }
+      else {
+    	  sb.deleteCharAt(sb.lastIndexOf(","));
+      }
       sb.append("},");
       i++;
     }
