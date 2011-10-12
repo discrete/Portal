@@ -1,5 +1,6 @@
 package com.accesscompany.as.asgameapi;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -68,9 +69,8 @@ public class OnlineApplication {
 			List<Entity> inventory) {
 		Query recommendedQuery = new Query("OnlineApplication");
 		//recommendedQuery.addSort("registeredDate", SortDirection.DESCENDING);
-		List<Entity> recommendations = datastore.prepare(recommendedQuery).asList(FetchOptions.Builder.withLimit(4));
 		
-		return recommendations;
+		return datastore.prepare(recommendedQuery).asList(FetchOptions.Builder.withLimit(4));
 	}
 
 }

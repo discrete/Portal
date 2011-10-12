@@ -29,15 +29,17 @@ public class ListInventoryServlet extends HttpServlet {
 		List<Entity> recommended = OnlineApplication.getRecommendedOnlineApplication(playerId, inventory);
 		if (inventory != null) {
 			JSONArray jsonInventory = SimpleJSON.entitiesToJSON(inventory);
+			JSONArray jsonRecommended = SimpleJSON.entitiesToJSON(recommended);
+			
 			JSONObject obj = new JSONObject();
-			JSONArray jsonResult = new JSONArray();
-			/*
-			obj.put("owned", jsonInventory);
-			obj.put("recommended", jsonInventory);
-			*/
-			jsonResult.put(jsonInventory);
-			jsonResult.put(recommended);
-			resp.getWriter().println(jsonResult.toString());
+			try {
+				obj.put("owned", jsonInventory);
+				obj.put("recommended", jsonRecommended);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			
+			resp.getWriter().println(obj.toString());
 		}
 		else {
 			resp.getWriter().println("[]");
