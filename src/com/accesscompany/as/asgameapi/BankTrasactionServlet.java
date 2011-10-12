@@ -45,10 +45,10 @@ public class BankTrasactionServlet extends HttpServlet {
             // ...
         }
         if (line != null && line.equals(amount)) {
+        	long balance = Coin.balance(playerId);
         	Entity lineTransaction = Coin.deposit(playerId, "1", Long.parseLong(amount), note);
     		if (lineTransaction != null) {
-    			long balance = Coin.balance(playerId);
-    			
+    			balance = balance + Long.parseLong(amount);
     			resp.getWriter().println("[{\"amount\": \"" + amount + "\", \"balance\": \"" + balance + "\"}]");
     		}
     		else {
