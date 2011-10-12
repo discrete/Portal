@@ -1,11 +1,17 @@
 package com.accesscompany.as.asgameapi;
 
+import java.util.Date;
+import java.util.List;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 public class OnlineApplication {
 	private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -15,6 +21,8 @@ public class OnlineApplication {
 		Entity onlineApp = new Entity("OnlineApplication");
 		onlineApp.setProperty("name", name);
 		onlineApp.setProperty("price", price);
+		Date registeredDate = new Date();
+		onlineApp.setProperty("registeredDate", registeredDate);
 		onlineApp.setProperty("description", description);
 		
 		datastore.put(onlineApp);
@@ -55,6 +63,14 @@ public class OnlineApplication {
 	  	catch (EntityNotFoundException e) {
 	  		return null;
 	    }
+	}
+	public static List<Entity> getRecommendedOnlineApplication(String playerId,
+			List<Entity> inventory) {
+		Query recommendedQuery = new Query("OnlineApplication");
+		//recommendedQuery.addSort("registeredDate", SortDirection.DESCENDING);
+		List<Entity> recommendations = datastore.prepare(recommendedQuery).asList(FetchOptions.Builder.withLimit(4));
+		
+		return recommendations;
 	}
 
 }
