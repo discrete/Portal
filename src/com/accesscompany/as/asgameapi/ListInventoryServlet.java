@@ -27,7 +27,7 @@ public class ListInventoryServlet extends HttpServlet {
 			resp.getWriter().println(SimpleJSON.writeJSON(inventory, null));
 		}
 		else {
-			resp.getWriter().println("[{\"resultcode\": \"1\"}]");
+			resp.getWriter().println("[]");
 		}
 	}
 
