@@ -2,21 +2,90 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="user-scalable=no, width=device-width" />
+<link rel="stylesheet" type="text/css" href="android.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="desktop.css" media="screen and (min-width: 481px)" />
+<title>Signup to Access Game Center</title>
 </head>
 <body>
-<h1>Sign up</h1>
-	<form name="signup-form" id="signup-form" action="signup" method="post">
-	   	 <label>Sing-up</label>
-	   	 id:<input type="text" name="playerId" id="playerId"/><br/>
-	   	 password:<input type="password" name="password" id="password"/><br/>
-	   	 email:<input type="text" name="email" id="email"><br/>
-	   	 First Name:<input type="text" name="firstName" id="firstName"/><br/>
-	   	 Last Name:<input type="text" name="lastName" id="lastName"/><br/>
-		 Nickname: <input type="text" name="nickname" id="nickname"/><br/>
+    <form action="signup" autocomplete="off" name="signup-form" id="signup-form" method="post"> 
+	  <h2 class="subdued"> 
+	    Sing-up
+	  </h2>
+		<div class="fieldgroup">
 
-	     <input type="submit" value="Signup"/>
-	     <input type="reset" id="product-search-reset" class="cancel" title="Reset" value="Reset" style="visibility: hidden"/>
-    </form>
+			<div class="fields">
+				<dl class="form autocheck">
+					<dt>
+						<label for="playerId">Username</label>
+					</dt>
+					<dd>
+						<input id="playerId" name="playerId" size="30" type="text" />
+						<p class="note">
+							Your username, <b>not</b> your company's username.
+						</p>
+					</dd>
+				</dl>
+				<dl class="form autocheck">
+					<dt>
+						<label for="password">Password</label>
+					</dt>
+					<dd>
+						<input id="password" name="password" size="30"
+							type="password" />
+						<p class="note">Must contain one lowercase letter, one number,
+							and be at least 7 characters long</p>
+					</dd>
+				</dl>
+				<dl class="form autocheck">
+					<dt>
+						<label for="email">Email Address</label>
+					</dt>
+					<dd>
+						<input id="email" name="email" size="30" type="text" />
+					</dd>
+				</dl>
+				
+				<dl class="form autocheck">
+					<dt>
+						<label for="firstName">First Name</label>
+					</dt>
+					<dd>
+						<input id="firstName" name="firstName" size="30" type="text" />
+					</dd>
+				</dl>
+				<dl class="form autocheck">
+					<dt>
+						<label for="lastName">Last Name</label>
+					</dt>
+					<dd>
+						<input id="lastName" name="lastName" size="30" type="text" />
+						
+					</dd>
+				</dl>
+				<dl class="form autocheck">
+					<dt>
+						<label for="nickname">Nickname</label>
+					</dt>
+					<dd>
+						<input id="nickname" name="nickname" size="30" type="text" />
+					</dd>
+				</dl>
+			</div>
+		</div>
+ 
+ 
+ 
+ 
+  <div class="form-warning"> 
+    <p>By clicking on "Create an account" below, you are agreeing to the
+    Terms of Service and the
+    <a href="http://help.github.com/privacy/" target="_blank">Privacy Policy</a>.</p> 
+  </div> 
+  <div class="form-actions"> 
+    <button type="submit" class="classy js-oneclick" id="signup_button"><span>Create an account</span></button> 
+  </div> 
+ 
+</form> 
 </body>
 </html>

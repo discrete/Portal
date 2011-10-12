@@ -1,0 +1,65 @@
+/* Your CSS style declarations for desktop browsers would go in this file. 
+
+For example:
+
+body {
+    margin:0;
+    padding:0;
+    font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+
+*/
+
+body {
+    margin:0;
+    padding:0;
+    font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+
+.equacols .fieldgroup .fields, .htabs .columns.typical .fieldgroup .fields, .htabs .columns.hooks .fieldgroup .fields {
+	background-image: url('fieldgroup_back-440.png');
+}
+
+.fieldgroup .fields {
+	margin: 10px 0 0 0;
+	padding: 10px;
+	background: url('fieldgroup_back.png') 0 0 no-repeat;
+}
+
+dl.form dt {
+	font-size: 14px;
+	font-weight: bold;
+	color: #333;
+}
+
+dl.form dt label {
+	position: relative;
+}
+
+dl.form dd input[type="text"], dl.form dd input[type="password"] {
+	margin-right: 5px;
+	font-size: 14px;
+	width: 400px;
+	padding: 5px;
+	color: #666;
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+dd {
+	display: block;
+	-webkit-margin-start: 0px;
+}
+
+input[type="text"], input[type="password"], input[type="image"], textarea {
+	font: 99% helvetica,arial,freesans,sans-serif;
+}
+
+input::-webkit-outer-spin-button {
+	-webkit-appearance: outer-spin-button;
+	display: inline-block;
+	position: relative;
+	cursor: default;
+	margin-left: 2px;
+	-webkit-user-select: none;
+}
