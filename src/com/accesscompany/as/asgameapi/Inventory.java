@@ -59,4 +59,14 @@ public class Inventory {
 	    }
 	    return null;
 	}
+
+	public static void deletePlayer(String playerId) {
+		Query inventoryQuery = new Query("Inventory");
+		inventoryQuery.addFilter("playerId", Query.FilterOperator.EQUAL, playerId);
+		List<Entity> inventory = datastore.prepare(inventoryQuery).asList(FetchOptions.Builder.withDefaults());
+		for (Entity item : inventory) {
+			datastore.delete(item.getKey());
+		}
+	    return;
+	}
 }

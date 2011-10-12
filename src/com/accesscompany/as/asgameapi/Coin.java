@@ -56,4 +56,14 @@ public class Coin {
 	        return balance;
 	    }
 	}
+
+	public static void deletePlayer(String playerId) {
+		Query query = new Query("Coin");
+		query.addFilter("playerId", Query.FilterOperator.EQUAL, playerId);
+	    List<Entity> transactions = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+	    for (Entity transaction : transactions) {
+	    	datastore.delete(transaction.getKey());
+        }
+	    return;
+	}
 }
