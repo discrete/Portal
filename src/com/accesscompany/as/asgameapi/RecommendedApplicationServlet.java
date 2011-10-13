@@ -21,7 +21,6 @@ public class RecommendedApplicationServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//super.doGet(req, resp);
 		resp.setContentType("text/plain");
 		String playerId = req.getParameter("playerId");
@@ -31,17 +30,14 @@ public class RecommendedApplicationServlet extends HttpServlet {
 			JSONArray jsonInventory = SimpleJSON.entitiesToJSON(inventory);
 			JSONArray jsonRecommended = SimpleJSON.entitiesToJSON(recommended);
 			
-			JSONObject obj = new JSONObject();
+			JSONObject objOutput = new JSONObject();
 			try {
-				obj.put("owned", jsonInventory);
-				obj.put("recommended", jsonRecommended);
+				objOutput.put("recommended", jsonRecommended);
+				objOutput.put("owned", jsonInventory);	
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			JSONArray jsonResult = new JSONArray();
-			jsonResult.put(obj);
-			
-			resp.getWriter().println(jsonResult.toString());
+			resp.getWriter().println(objOutput.toString());
 		}
 		else {
 			resp.getWriter().println("[]");
