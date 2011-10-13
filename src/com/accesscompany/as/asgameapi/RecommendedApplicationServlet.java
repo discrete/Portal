@@ -25,23 +25,35 @@ public class RecommendedApplicationServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 		String playerId = req.getParameter("playerId");
 		List<Entity> inventory = Inventory.getInventory(playerId);
-		List<Entity> recommended = OnlineApplication.getRecommendedOnlineApplication(playerId, inventory);
-		if (inventory != null) {
-			JSONArray jsonInventory = SimpleJSON.entitiesToJSON(inventory);
-			JSONArray jsonRecommended = SimpleJSON.entitiesToJSON(recommended);
-			
-			JSONObject objOutput = new JSONObject();
-			try {
-				objOutput.put("recommended", jsonRecommended);
-				objOutput.put("owned", jsonInventory);	
-			} catch (JSONException e) {
-				e.printStackTrace();
+		JSONObject objOutput = new JSONObject();
+		try {
+			JSONArray jsonInventory;
+			if (inventory != null) {
+				jsonInventory = SimpleJSON.entitiesToJSON(inventory);
 			}
-			resp.getWriter().println(objOutput.toString());
+			else {
+				jsonInventory = new JSONArray();
+			}
+			objOutput.put("owned", jsonInventory);	
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
-		else {
-			resp.getWriter().println("[]");
+		
+		List<Entity> recommended = OnlineApplication.getRecommendedOnlineApplication(playerId, inventory);
+		try {
+			JSONArray jsonRecommended;
+			if (recommended != null) {
+				jsonRecommended = SimpleJSON.entitiesToJSON(recommended);
+			}
+			else {
+				jsonRecommended = new JSONArray();
+			}
+			objOutput.put("recommended", jsonRecommended);
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
+
+		resp.getWriter().println(objOutput.toString());
 	}
 
 }

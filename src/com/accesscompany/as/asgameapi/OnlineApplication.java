@@ -68,9 +68,29 @@ public class OnlineApplication {
 	
 	public static List<Entity> getRecommendedOnlineApplication(String playerId,
 			List<Entity> inventory) {
+		List<Entity> recommendedApplications = new ArrayList<Entity>();
+		int foundCount = 0;
 		Query recommendedQuery = new Query("OnlineApplication");
-		
-		return datastore.prepare(recommendedQuery).asList(FetchOptions.Builder.withLimit(4));
+		List<Entity> recommended= datastore.prepare(recommendedQuery).asList(FetchOptions.Builder.withDefaults());
+	    if (!recommended.isEmpty()) {
+	        AppLoop: for (Entity app: recommended) {
+	        	if (inventory != null ){
+		        	for (Entity item: inventory) {
+		        		if (item.getKey().equals(app.getKey())) {
+		        			continue AppLoop;
+		        		}
+		        	}
+	        	}
+	        	recommendedApplications.add(app);
+    			foundCount++;
+	        	if (foundCount > 3) {
+	        		break AppLoop;
+	        	}
+	        }
+	        return recommendedApplications;
+	    }
+
+		return null;
 	}
 
 }

@@ -23,6 +23,7 @@ public class BuyApplicationServlet extends HttpServlet {
 		String playerId = req.getParameter("playerId");
 		String appId = req.getParameter("appId");
 		String sessionId = req.getParameter("sessionId");
+		String userAgent = req.getParameter("userAgent");
 		
 		Entity socialPlayer = SocialPlayer.getSocialPlayer(playerId);
 		Entity onlineApp = OnlineApplication.getOnlineApplication(appId);
@@ -33,11 +34,22 @@ public class BuyApplicationServlet extends HttpServlet {
 		if (balance >= price) {
 			Entity receipt = Coin.withdraw(playerId, "1", price, "Buying an application from AS" + appId);
 			Inventory.createPurchase(playerId, onlineApp.getKey(), receipt.getKey());
-			resp.getWriter().println("Purchase made");
+			if (userAgent == null) {
+				resp.getWriter().println("[{\"resultcode\": 0}]");
+			}
+			else {
+				resp.getWriter().println("purchase made");
+			}
+			
 		}
 		else {
 			errorCode = 1;
-			resp.getWriter().println("Not enough funds");
+			if (userAgent == null) {
+				resp.getWriter().println("[{\"resultcode\": 1}]");
+			}
+			else {
+				resp.getWriter().println("Not enough funds");
+			}
 		}
 		
 	}

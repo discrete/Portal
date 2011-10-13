@@ -36,7 +36,7 @@ else {
 	 Entity item = Inventory.getInventoryItem(playerId, onlineApp.getKey());
 	 if (item == null) {
 	 %>
-	 <a href="buyapp?playerId=<%=playerId %>&appId=<%=appId %>">Buy</a>
+	 <a href="buyapp?playerId=<%=playerId %>&appId=<%=appId %>&userAgent=browser">Buy</a>
 	 <%
 	 }
 	 else {

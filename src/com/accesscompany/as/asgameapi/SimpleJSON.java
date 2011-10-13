@@ -56,13 +56,14 @@ public class SimpleJSON {
 	public static JSONObject entityToJSON(Entity entity) {
 		JSONObject json = new JSONObject();
 		try {
-			for (Map.Entry<String, Object> prop : entity.getProperties()
-					.entrySet()) {
+			for (Map.Entry<String, Object> prop : entity.getProperties().entrySet()) {
 				json.put(prop.getKey(), prop.getValue());
 			}
+			json.put("appId", entity.getKey().getId());
 		} catch (JSONException e) {
 			throw new RuntimeException(e);
 		}
+		
 		return json;
 	}
 }

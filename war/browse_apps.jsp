@@ -22,7 +22,7 @@
     // view of the Greetings belonging to the selected Guestbook.
     String playerId = request.getParameter("playerId");
     Query query = new Query("OnlineApplication");
-    List<Entity> onlineApps = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(5));
+    List<Entity> onlineApps = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
     if (onlineApps.isEmpty()) {
         %>
         <p>No registered application yet</p>

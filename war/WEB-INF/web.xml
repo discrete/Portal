@@ -84,6 +84,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>DeleteSocialPlayer</servlet-name>
 		<url-pattern>/deleteplayer</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ResetDemo</servlet-name>
+		<servlet-class>com.accesscompany.as.asgameapi.ResetDemoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResetDemo</servlet-name>
+		<url-pattern>/resetdemo</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

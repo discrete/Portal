@@ -5,7 +5,16 @@
 <meta name="viewport" content="user-scalable=no, width=device-width" />
 <link rel="stylesheet" type="text/css" href="android.css" media="only screen and (max-width: 480px)" />
 <link rel="stylesheet" type="text/css" href="desktop.css" media="screen and (min-width: 481px)" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <title>Signup to Access Game Center</title>
+<script>
+function fillSignupForm()
+{
+	document.getElementById("playerId").text = "demouser";
+	
+	return;
+}
+</script>
 </head>
 <body>
     <form action="signup" autocomplete="off" name="signup-form" id="signup-form" method="post"> 
@@ -22,7 +31,7 @@
 					<dd>
 						<input id="playerId" name="playerId" size="30" type="text" />
 						<p class="note">
-							Your username, <b>not</b> your company's username.
+							Your username, <b>not</b> your company's username. <a href="JavaScript:fillSignupForm();">Demo</a>
 						</p>
 					</dd>
 				</dl>
