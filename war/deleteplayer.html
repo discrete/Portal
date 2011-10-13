@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="user-scalable=no, width=device-width" />
+<link rel="stylesheet" type="text/css" href="android.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="desktop.css" media="screen and (min-width: 481px)" />
+<title>Delete Player</title>
+</head>
+<body>
+<form action="deleteplayer" autocomplete="off" name="signout-form" id="signout-form" method="get"> 
+	  <h2 class="subdued"> 
+	    Sing-out
+	  </h2>
+		<div class="fieldgroup">
+
+			<div class="fields">
+				<dl class="form autocheck">
+					<dt>
+						<label for="playerId">Username</label>
+					</dt>
+					<dd>
+						<input id="playerId" name="playerId" size="30" type="text" />
+						<p class="note">
+							Player ID you want to delete.
+						</p>
+					</dd>
+				</dl>
+			</div>
+		</div>
+  
+  <div class="form-warning"> 
+    <p>This operation can not be undone</p> 
+  </div> 
+  <div class="form-actions"> 
+    <button type="submit" class="classy js-oneclick" id="signup_button"><span>Delete</span></button> 
+  </div> 
+ 
+</form> 
+</form>
+</body>
+</html>
