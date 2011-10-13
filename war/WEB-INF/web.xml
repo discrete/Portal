@@ -69,6 +69,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/inventory</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>RecommendedApplication</servlet-name>
+		<servlet-class>com.accesscompany.as.asgameapi.RecommendedApplicationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RecommendedApplication</servlet-name>
+		<url-pattern>/recommend</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>DeleteSocialPlayer</servlet-name>
 		<servlet-class>com.accesscompany.as.asgameapi.DeleteSocialPlayerServlet</servlet-class>
 	</servlet>

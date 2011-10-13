@@ -9,11 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.Query;
-import com.google.appengine.repackaged.org.json.JSONArray;
-import com.google.appengine.repackaged.org.json.JSONException;
-import com.google.appengine.repackaged.org.json.JSONObject;
 
 @SuppressWarnings("serial")
 public class ListInventoryServlet extends HttpServlet {
@@ -26,20 +21,8 @@ public class ListInventoryServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 		String playerId = req.getParameter("playerId");
 		List<Entity> inventory = Inventory.getInventory(playerId);
-		List<Entity> recommended = OnlineApplication.getRecommendedOnlineApplication(playerId, inventory);
 		if (inventory != null) {
-			JSONArray jsonInventory = SimpleJSON.entitiesToJSON(inventory);
-			JSONArray jsonRecommended = SimpleJSON.entitiesToJSON(recommended);
-			
-			JSONObject obj = new JSONObject();
-			try {
-				obj.put("owned", jsonInventory);
-				obj.put("recommended", jsonRecommended);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			
-			resp.getWriter().println(obj.toString());
+			resp.getWriter().println(SimpleJSON.writeJSON(inventory, null));
 		}
 		else {
 			resp.getWriter().println("[]");

@@ -65,10 +65,10 @@ public class OnlineApplication {
 	  		return null;
 	    }
 	}
+	
 	public static List<Entity> getRecommendedOnlineApplication(String playerId,
 			List<Entity> inventory) {
 		Query recommendedQuery = new Query("OnlineApplication");
-		//recommendedQuery.addSort("registeredDate", SortDirection.DESCENDING);
 		
 		return datastore.prepare(recommendedQuery).asList(FetchOptions.Builder.withLimit(4));
 	}
