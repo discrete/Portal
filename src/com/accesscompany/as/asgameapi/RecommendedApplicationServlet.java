@@ -38,8 +38,10 @@ public class RecommendedApplicationServlet extends HttpServlet {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
+			JSONArray jsonResult = new JSONArray();
+			jsonResult.put(obj);
 			
-			resp.getWriter().println(obj.toString());
+			resp.getWriter().println(jsonResult.toString());
 		}
 		else {
 			resp.getWriter().println("[]");
